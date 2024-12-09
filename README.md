@@ -15,6 +15,7 @@ A continuación se detallan los distintos desafíos encontrados.
 #### Posibles soluciones
 1. Desarrollar un sistema de recomendación utilizando algoritmos de machine learning para analizar las opiniones e identificar patrones de preferencia.
 2. Implementar un análisis de sentimiento utilizando técnicas de procesamiento de lenguaje natural (NLP).
+3. Combinar los puntos 1 y 2 y desarrollar un sistema híbrido de recomendación, aprovechando las fortalezas de cada uno.
 
 ### Objetivos
 1. Desarrollar un sistema de recomendación que sugiera nuevos restaurantes que el usuario probablemente disfrutará, basado en calificaciones previas (aunque no las haya visitado antes), o basado en usuario que tienen gustos similares, o que brinde la posibilidad de, mediante un motor de búsqueda, recomendar el restaurante.
