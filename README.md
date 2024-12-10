@@ -1,4 +1,14 @@
-# Data Solutions
+# PROYECTO GRUPAL
+
+## `Data Solutions`
+
+### Roles y miebros del equipo
+Data engineer: Alberto - Franky
+Machine learning engineer: Carla - Josue
+Data analyst: Jesús - Jovany
+
+### Introducción
+El presente proyecto grupal se centra en el análisis y la creación de sistemas de recomendación basados en reseñas de usuarios de plataformas populares como Google Maps y Yelp. El objetivo principal es desarrollar herramientas que ayuden a un conglomerado de empresas a comprender mejor la percepción de sus clientes y a tomar decisiones informadas. Para este proyecto, hemos creado una empresa ficticia llamada Data Solutions, que se encargará de implementar soluciones de ciencia de datos para invertir con éxito.
 
 ### Entendimiento de la situación actual
 Se describe la situación actual comunicando el contexto, la problemática y expresando posibles soluciones.
