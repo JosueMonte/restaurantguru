@@ -21,7 +21,7 @@ Desde hace muchos años, tanto Yelp como Google Maps permiten a los usuarios esc
 
 ### Problemática
 A continuación se detallan los distintos desafíos encontrados:
-1. Valoración y conocimiento del cliente: Las empresas necesitan conocer la imagen que los usuarios tienen de ellas a través de un análisis de las reseñas para mejorar su desempeño y ofrecer servicios personalizados.
+1. Conocimiento del cliente: Las empresas necesitan conocer la imagen que los usuarios tienen de ellas a través de un análisis de las reseñas para mejorar su desempeño, valorar sus opiniones y ofrecer servicios personalizados.
 2. Optimización de localización: Las empresas necesitan identificar las mejores ubicaciones para nuevos locales y así invertir correctamente.
    
 ### Posibles soluciones
@@ -35,4 +35,4 @@ A continuación se detallan los distintos desafíos encontrados:
 3. Crear un dashboard interactivo que brinde a los clientes una visualización clara y precisa, destacando las áreas clave en las que deberían enfocar sus esfuerzos para alcanzar los objetivos propuestos.
 
 ## Alcance
-Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico por ser una categoría importante, y los 14 estados más relevantes en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones son para este proyecto, debido a cuestiones de tiempo y escala, pero podrían expandirse en etapas futuras.
+Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico, por ser una categoría clave, y los 10 estados más relevantes de la zona este en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones se aplican a este proyecto debido a cuestiones de tiempo y escala, pero podrían expandirse en futuras etapas.
