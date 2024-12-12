@@ -2,7 +2,7 @@
 
 ## `Data Solutions`
 
-  <img src="Logo seleccionado.png" alt="Logo de empresa" width="300"/>
+  <img src="Logo_seleccionado.png" alt="Logo de empresa" width="300"/>
 
 ## Roles y miembros del equipo
 * Data engineer: Alberto - Franky
