@@ -1,8 +1,14 @@
 # PROYECTO GRUPAL
 
 ## `Data Solutions`
+<<<<<<< HEAD
 
 <img src="Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
+=======
+<div style="text-align: center;">
+  <img src="Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
+</div>
+>>>>>>> 4bce8c154fbb46cb262b4fd0ea91f34083842da1
 
 ## Roles y miembros del equipo
 * Data engineer: Alberto - Franky
@@ -32,6 +38,9 @@ A continuación se detallan los distintos desafíos encontrados:
 1. Desarrollar un sistema de recomendación que sugiera nuevos restaurantes que el usuario probablemente disfrutará, basado en calificaciones previas (aunque no las haya visitado antes), o basado en usuario que tienen gustos similares, o que brinde la posibilidad de, mediante un motor de búsqueda, recomendar el restaurante.
 2. Implementar un análisis de sentimiento detallado de las opiniones de los usuarios en Yelp y Google Maps para cuantificar la percepción de los clientes y predecir el éxito o fracaso potencial de nuevos locales en distintas ubicaciones.
 3. Crear un dashboard interactivo que brinde a los clientes una visualización clara y precisa, destacando las áreas clave en las que deberían enfocar sus esfuerzos para alcanzar los objetivos propuestos.
+
+# Metodología
+Para alcanzar dichos objetivos, se utilizará la metodología Scrum, un marco de trabajo ágil diseñado para gestionar proyectos complejos y adaptarse rápidamente a los cambios. El seguimiento se realizará en ciclos cortos llamados Sprints, con entregas incrementales alineadas con las necesidades del negocio y del cliente, distribuidas en tres fases.
 
 ## Alcance
 Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico, por ser una categoría clave, y los 10 estados más relevantes de la zona este en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones se aplican a este proyecto debido a cuestiones de tiempo y escala, pero podrían expandirse en futuras etapas.
