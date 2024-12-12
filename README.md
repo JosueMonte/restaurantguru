@@ -34,11 +34,40 @@ A continuación se detallan los distintos desafíos encontrados:
 2. Implementar un análisis de sentimiento detallado de las opiniones de los usuarios en Yelp y Google Maps para cuantificar la percepción de los clientes y predecir el éxito o fracaso potencial de nuevos locales en distintas ubicaciones.
 3. Crear un dashboard interactivo que brinde a los clientes una visualización clara y precisa, destacando las áreas clave en las que deberían enfocar sus esfuerzos para alcanzar los objetivos propuestos.
 
-# Metodología
-Para alcanzar dichos objetivos, se utilizará la metodología Scrum, un marco de trabajo ágil diseñado para gestionar proyectos complejos y adaptarse rápidamente a los cambios. El seguimiento se realizará en ciclos cortos llamados Sprints, con entregas incrementales alineadas con las necesidades del negocio y del cliente, distribuidas en tres fases.
+## Metodología
+Para alcanzar dichos objetivos, se utilizará la metodología Scrum, un marco de trabajo ágil diseñado para gestionar proyectos complejos y adaptarse rápidamente a los cambios. El seguimiento se realizará en ciclos cortos llamados Sprints, con entregas incrementales alineadas con las necesidades del negocio y del cliente, distribuidas en tres fases. Para mayor detalle, se anexa un documento llamado 'metodologiaScrum'.
 
 ## Alcance
 Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico, por ser una categoría clave, y los 10 estados más relevantes de la zona este en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones se aplican a este proyecto debido a cuestiones de tiempo y escala, pero podrían expandirse en futuras etapas.
+
+## Stack tecnológico
+A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
+1. Fuente de datos:
+   1. API de Yelp.
+   2. API de Google Maps.
+   3. Google Drive.
+2. Procesamiento de datos:
+   1. Apache Spark.
+   2. Python.
+   3. Pandas.
+   4. Google Cloud Big Query.
+3. Análisis exploratorio de datos:
+   1. NumPy.
+   2. Matplotlib y Seaborn.
+   3. Plotly.
+   4. Scikit-learn.
+4. Machine Learning:
+   1. Scikit-learn.
+   2. TensorFlow o PyTorch.
+   3. NLTK y SpaCy.
+   4. Pickle.
+   5. Huggin Face (BERT).
+5. Implementación:
+   1. Google Cloud Run.
+   2. Google Cloud Build.
+6. Visualización:
+   1. Power BI.
+   2. Looker Studio.
 
 ## Indicadores claves de rendimiento (KPIs)
 A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
@@ -61,9 +90,11 @@ Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de
 2. Evalúe su satisfacción: positiva, neutra o negativa.
 3. Indique si es su primera visita o una visita repetida.
 
-## Consideraciones adicionales
+## Consideraciones adicionales para los KPIs
 Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
 
-
-
-
+## Cronograma general
+A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
+<div style="text-align: center;">
+  <img src="Gantt.PNG" alt="Cronograma" width="1200"/>
+</div>
