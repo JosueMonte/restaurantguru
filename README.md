@@ -71,18 +71,52 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 
 ## Indicadores claves de rendimiento (KPIs)
 A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
-* __Satisfacción del cliente:__ 
-Métrica: Relación entre el promedio de estrellas del trimestre 1 (actual) respecto al trimestre 0 (anterior)
-Objetivo: Aumentar la calificación promedio de cada establecimiento en un 10 % para el próximo trimestre.
-* __Rendimiento del modelo (acuraccy):__
-Métrica: Proporción de recomendaciones correctas frente al total. 
-Objetivo: Incrementar la proporción de recomendaciones correctas en un 10 % para el próximo trimestre. 
-* __Tasa de clientes recurrentes:__
-Métrica: Proporción de clientes que realizaron más de una visita en comparación con el total de clientes únicos
-Objetivo: Incrementar la tasa de clientes recurrentes en un 10 por ciento para el próximo trimestre.
-* __Cantidad de reseñas:__
-Métrica: Número de reseñas en las plataformas de Yelp y Google Maps.
-Objetivo: Aumentar el número de reseñas en un 20 por ciento para el próximo trimestre.
+* __`Satisfacción del cliente:`__
+
+**Objetivo:** Aumentar la calificación promedio de cada establecimiento en un 10 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+$$
+\text{Satisfacción del cliente} = \left( \frac{\text{Estrellas promedio (trimestre actual)}}{\text{Estrellas promedio (trimestre anterior)}} \right) \times 100
+$$
+
+* __`Rendimiento del modelo (acuraccy):`__
+
+**Objetivo:** Incrementar la proporción de recomendaciones correctas en un 10 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+$$
+\text{Rendimiento del modelo} = \left( \frac{\text{Proporción de recomendaciones correctas (trimestre actual)}}{\text{Proporción de recomendaciones correctas (trimestre anterior)}} \right) \times 100
+$$
+
+**Fórmula para calcular la proporción de recomendaciones correctas:**
+$$
+\text{Proporción de recomendaciones correctas} = \left( \frac{\text{Recomendaciones correctas}}{\text{Total de recomendaciones}} \right) \times 100
+$$
+
+* __`Fidelización del cliente:`__
+
+**Objetivo:** Incrementar la tasa de clientes recurrentes en un 10 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+$$
+\text{Fidelización del cliente} = \left( \frac{\text{Tasa de clientes recurrentes (trimestre actual)}}{\text{Tasa de clientes recurrentes (trimestre anterior)}} \right) \times 100
+$$
+
+**Fórmula para calcular la tasa de clientes recurrentes:**
+$$
+\text{Tasa de clientes recurrentes} = \left( \frac{\text{Clientes recurrentes}}{\text{Clientes únicos totales}} \right) \times 100
+$$
+
+* __`Tasa de reseñas:`__
+
+**Objetivo:** Aumentar el número de reseñas en un 20 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+$$
+\text{Tasa de reseñas} = \left( \frac{\text{Número de reseñas (trimestres actual)}}{\text{Número de reseñas (trimestres anterior)}} \right) \times 100
+$$
+
 
 ## Encuesta de satisfacción
 Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
