@@ -2,7 +2,7 @@
 
 ## `Data Solutions`
 <div style="text-align: center;">
-  <img src="![alt text](image.png)" alt="Logo de empresa" width="200"/>
+  <img src="image-1.png" alt="Logo de empresa" width="300"/>
 </div>
 
 ## Roles y miembros del equipo
