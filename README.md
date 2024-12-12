@@ -1,7 +1,6 @@
 # PROYECTO GRUPAL
 
 ## `Data Solutions`
-
 <div style="text-align: center;">
   <img src="Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
 </div>
@@ -35,8 +34,36 @@ A continuación se detallan los distintos desafíos encontrados:
 2. Implementar un análisis de sentimiento detallado de las opiniones de los usuarios en Yelp y Google Maps para cuantificar la percepción de los clientes y predecir el éxito o fracaso potencial de nuevos locales en distintas ubicaciones.
 3. Crear un dashboard interactivo que brinde a los clientes una visualización clara y precisa, destacando las áreas clave en las que deberían enfocar sus esfuerzos para alcanzar los objetivos propuestos.
 
-## Metodología
+# Metodología
 Para alcanzar dichos objetivos, se utilizará la metodología Scrum, un marco de trabajo ágil diseñado para gestionar proyectos complejos y adaptarse rápidamente a los cambios. El seguimiento se realizará en ciclos cortos llamados Sprints, con entregas incrementales alineadas con las necesidades del negocio y del cliente, distribuidas en tres fases.
 
 ## Alcance
 Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico, por ser una categoría clave, y los 10 estados más relevantes de la zona este en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones se aplican a este proyecto debido a cuestiones de tiempo y escala, pero podrían expandirse en futuras etapas.
+
+## Indicadores claves de rendimiento (KPIs)
+A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
+* __Satisfacción del cliente:__ 
+Métrica: Relación entre el promedio de estrellas del trimestre 1 (actual) respecto al trimestre 0 (anterior)
+Objetivo: Aumentar la calificación promedio de cada establecimiento en un 10 % para el próximo trimestre.
+* __Rendimiento del modelo (acuraccy):__
+Métrica: Proporción de recomendaciones correctas frente al total. 
+Objetivo: Incrementar la proporción de recomendaciones correctas en un 10 % para el próximo trimestre. 
+* __Tasa de clientes recurrentes:__
+Métrica: Proporción de clientes que realizaron más de una visita en comparación con el total de clientes únicos
+Objetivo: Incrementar la tasa de clientes recurrentes en un 10 por ciento para el próximo trimestre.
+* __Cantidad de reseñas:__
+Métrica: Número de reseñas en las plataformas de Yelp y Google Maps.
+Objetivo: Aumentar el número de reseñas en un 20 por ciento para el próximo trimestre.
+
+## Encuesta de satisfacción
+Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
+1. Califique el establecimiento con estrellas del 1 al 5.
+2. Evalúe su satisfacción: positiva, neutra o negativa.
+3. Indique si es su primera visita o una visita repetida.
+
+## Consideraciones adicionales
+Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
+
+
+
+
