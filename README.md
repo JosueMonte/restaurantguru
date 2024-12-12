@@ -1,9 +1,8 @@
 # PROYECTO GRUPAL
 
 ## `Data Solutions`
-<div style="text-align: center;">
-  <img src="image-1.png" alt="Logo de empresa" width="300"/>
-</div>
+
+  <img src="Logo seleccionado.png" alt="Logo de empresa" width="300"/>
 
 ## Roles y miembros del equipo
 * Data engineer: Alberto - Franky
