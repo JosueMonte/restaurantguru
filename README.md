@@ -2,7 +2,7 @@
 
 ## `Data Solutions`
 <div style="text-align: center;">
-  <img src="Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
+  <img src="src/Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
 </div>
 
 ## Roles y miembros del equipo
@@ -130,5 +130,11 @@ Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing pa
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
 <div style="text-align: center;">
-  <img src="Gantt.PNG" alt="Cronograma" width="1200"/>
+  <img src="src/Gantt.PNG" alt="Cronograma" width="1200"/>
+</div>
+
+## Base de datos
+A continuación se muestra la base de datos propuesta para la ejecución del proyecto, la cual puede ser mutable considerando posibles cambios a futuro
+<div style="text-align: center;">
+  <img src="src/DB.png" alt="Base de Datos" width="1200"/>
 </div>
