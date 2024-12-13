@@ -1,8 +1,8 @@
 # PROYECTO GRUPAL
 
 ## `Data Solutions`
-<div style="text-align: center;">
-  <img src="Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
+<div style="display: flex; justify-content: center;">
+  <img src="src/Logo_seleccionado.PNG" alt="Logo de empresa" width="300"/>
 </div>
 
 ## Roles y miembros del equipo
