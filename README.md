@@ -78,7 +78,9 @@ A continuación, se mencionan los KPI que se visualizarán en el Dashboard para 
 
 **Fórmula para calcular el KPI:**
 
-Satisfacción del cliente = Calificación promedio de restaurantes recomendados (trimestre actual) / (Calificación promedio de restaurantes recomendados (trimestre anterior)) * 100
+<p align="center">
+  <b>Satisfacción del cliente</b> = (Calificación promedio de restaurantes recomendados (trimestre actual) / Calificación promedio de restaurantes recomendados (trimestre anterior)) * 100
+</p>
 
 * __`Rendimiento del modelo (acuraccy):`__
 
@@ -86,11 +88,15 @@ Satisfacción del cliente = Calificación promedio de restaurantes recomendados 
 
 **Fórmula para calcular el KPI:**
 
-Rendimiento del modelo = (Proporción de recomendaciones correctas (trimestre actual)) / (Proporción de recomendaciones correctas (trimestre anterior)) * 100
+<p align="center">
+  <b>Rendimiento del modelo</b> = (Proporción de recomendaciones correctas (trimestre actual)) / (Proporción de recomendaciones correctas (trimestre anterior)) * 100
+</b>
 
 **Fórmula para calcular la proporción de recomendaciones correctas:**
 
-Proporción de recomendaciones correctas = (Recomendaciones correctas / Total de recomendaciones) * 100
+<p align="center">
+   <b>Proporción de recomendaciones correctas</b> = (Recomendaciones correctas / Total de recomendaciones) * 100
+</b>
 
 * __`Fidelización del cliente:`__
 
@@ -98,11 +104,15 @@ Proporción de recomendaciones correctas = (Recomendaciones correctas / Total de
 
 **Fórmula para calcular el KPI:**
 
-Fidelización del cliente  = (Tasa de clientes recurrentes (trimestre actual)) / (Tasa de clientes recurrentes (trimestre anterior)) * 100
+<p align="center">
+   <b>Fidelización del cliente</b>  = (Tasa de clientes recurrentes (trimestre actual)) / (Tasa de clientes recurrentes (trimestre anterior)) * 100
+</b>
 
 **Fórmula para calcular la tasa de clientes recurrentes:**
 
-Tasa de clientes recurrentes = (Clientes recurrentes / Clientes únicos totales) * 100
+<p align="center">
+   <b>Tasa de clientes recurrentes</b> = (Clientes recurrentes / Clientes únicos totales) * 100
+</b>
 
 * __`Tasa de reseñas:`__
 
@@ -110,7 +120,9 @@ Tasa de clientes recurrentes = (Clientes recurrentes / Clientes únicos totales)
 
 **Fórmula para calcular el KPI:**
 
-Tasa de reseñas = (Número de reseñas (trimestres actual) / Número de reseñas (trimestres anterior)) * 100
+<p align="center">
+   <b>Tasa de reseñas</b> = (Número de reseñas (trimestres actual) / Número de reseñas (trimestres anterior)) * 100
+</b>
 
 ## Encuesta de satisfacción
 Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
