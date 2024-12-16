@@ -124,7 +124,7 @@ Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing pa
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
 <div style="text-align: center;">
-  <img src="Gantt.png" alt="Cronograma" width="1000"/>
+  <img src="gantt.png" alt="Cronograma" width="1000"/>
 </div>
 
 ## Diagrama de enteridad-relación
