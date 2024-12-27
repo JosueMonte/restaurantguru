@@ -40,6 +40,7 @@ Para alcanzar dichos objetivos, se utilizará la metodología Scrum, un marco de
 
 ## Alcance
 Desplegar un sistema de recomendación e implementar un tablero de control para la toma de decisiones gerenciales, considerando dos factores importantes: el sector gastronómico, por ser una categoría clave, y los 10 estados más relevantes de la zona este en términos de cantidad de reseñas, para asegurar la relevancia de los datos. Estas consideraciones se aplican a este proyecto debido a cuestiones de tiempo y escala, pero podrían expandirse en futuras etapas.
+La lista de Estados que comprende este proyecto es: `[NY, FL, PA, NJ, GA, VA, NC, MA, MD, TN]`
 
 ## Stack tecnológico
 A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
