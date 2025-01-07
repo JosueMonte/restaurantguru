@@ -4,9 +4,9 @@ import re
 import pandas as pd
 import numpy as np
 from scipy.spatial import cKDTree
-
+#
 class LocalGeocoder:
-    def __init__(self, csv_path='H:/restaurantguru/uscities.csv'):
+    def __init__(self, csv_path='uscities.csv'):
         # Cargar y preprocesar el dataframe una vez
         self.cities_df = pd.read_csv(csv_path)
         self.cities_df[['lat_rad', 'lng_rad']] = np.deg2rad(self.cities_df[['lat', 'lng']])
