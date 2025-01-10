@@ -1,29 +1,38 @@
 import os
 import json
-import pandas as pd
 import re
+import pandas as pd
+import numpy as np
+from scipy.spatial import cKDTree
+#
+class LocalGeocoder:
+    def __init__(self, csv_path='uscities.csv'):
+        # Cargar y preprocesar el dataframe una vez
+        self.cities_df = pd.read_csv(csv_path)
+        self.cities_df[['lat_rad', 'lng_rad']] = np.deg2rad(self.cities_df[['lat', 'lng']])
+        self.kdtree = cKDTree(self.cities_df[['lat_rad', 'lng_rad']].values)
+
+    def find_city(self, zip_code, lat, lon, zip_radius=5):
+        query_point = np.deg2rad([[lat, lon]])
+        zip_str = str(zip_code)[:zip_radius]
+        possible_matches = self.cities_df[
+            self.cities_df['zips'].astype(str).str.startswith(zip_str)
+        ]
+        
+        if possible_matches.empty:
+            return None
+        
+        tree = cKDTree(possible_matches[['lat_rad', 'lng_rad']].values)
+        distance, index = tree.query(query_point, k=1)
+        
+        return possible_matches.iloc[index]['city'] if len(index) > 0 else None
 
 def process_metadata_files(input_dir, output_file):
-    """
-    Procesa archivos JSON de metadatos para extraer información de restaurantes.
-
-    Args:
-        input_dir (str): Ruta de la carpeta que contiene los archivos JSON.
-        output_file (str): Ruta del archivo de salida en formato Parquet.
-
-    Returns:
-        None: Genera un archivo .parquet con los datos procesados.
-    """
-
-    # Inicializamos una lista para almacenar los datos procesados
     processed_data = []
 
-    # Función para extraer componentes de la dirección
     def extract_address_components(address, name):
         try:
-            # Eliminar el nombre del lugar de la dirección
             address = address.replace(name + ", ", "")
-            # Extraer partes de la dirección usando una expresión regular
             match = re.match(r"^(.*),\s*(.*),\s*(\w{2})\s*(\d{5})$", address)
             if match:
                 street, city, state, postal_code = match.groups()
@@ -32,37 +41,27 @@ def process_metadata_files(input_dir, output_file):
             pass
         return None, None, None, None
 
-    # Función para leer archivos .json con manejo de errores
     def load_json_file(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             try:
-                return json.load(f)  # Intentar cargar como un único JSON
+                return json.load(f)
             except json.JSONDecodeError:
-                # Intentar cargar línea por línea si el JSON está separado
-                f.seek(0)  # Reiniciar el cursor del archivo
-                return [json.loads(line) for line in f if line.strip()]  # Cargar línea por línea
+                f.seek(0)
+                return [json.loads(line) for line in f if line.strip()]
 
-    # Recorremos todos los archivos .json en la carpeta
     for file_name in os.listdir(input_dir):
         if file_name.endswith(".json"):
             file_path = os.path.join(input_dir, file_name)
             raw_data = load_json_file(file_path)
 
-            # Verificar si raw_data es una lista o un diccionario
             if isinstance(raw_data, dict):
-                raw_data = [raw_data]  # Convertir a lista si es un único diccionario
+                raw_data = [raw_data]
 
             for data in raw_data:
-                # Filtrar por categorías que incluyan la palabra "restaurant"
-                categories = data.get("category", [])
-                if categories is None:
-                    categories = []  # Convertimos None a una lista vacía
-
+                categories = data.get("category", []) or []
+                
                 if any("restaurant" in category.lower() for category in categories):
-                    # Extraer componentes de la dirección
                     street, city, state, postal_code = extract_address_components(data.get("address", ""), data.get("name", ""))
-
-                    # Agregar datos procesados a la lista
                     processed_data.append({
                         "gmap_id": data.get("gmap_id"),
                         "name": data.get("name"),
@@ -78,12 +77,24 @@ def process_metadata_files(input_dir, output_file):
                         "hours": data.get("hours")
                     })
 
-    # Convertimos la lista de datos procesados en un DataFrame
     df = pd.DataFrame(processed_data)
 
-    # Exportamos el DataFrame a un archivo .parquet
+    # Uso del geocoder para completar ciudades
+    geocoder = LocalGeocoder()
+    df['city'] = df.apply(
+        lambda row: geocoder.find_city(row['postal_code'], row['latitude'], row['longitude']), 
+        axis=1
+    )
+
+    df.dropna(subset=['city'], inplace=True)
+
+    # Solución al error de tipo de datos en la columna 'city'
+    df['city'] = df['city'].apply(lambda x: str(x) if x is not None else None)
+
+    # Exportar a parquet
     df.to_parquet(output_file, index=False)
     print(f"Archivo exportado exitosamente en {output_file}")
+
 
 def clean_and_merge_reviews(folder_path, output_folder, gmap_id_list):
     # Crear carpeta de salida si no existe
