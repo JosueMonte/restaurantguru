@@ -1,5 +1,6 @@
 # Ignorar la carpeta datasets
 datasets/
 Data_cleaned/
-AnalisisDeSentimiento/
 clean_functions/
+*.CSV
+
