@@ -8,7 +8,8 @@
 ## Roles y miembros del equipo
 * Data engineer: Alberto - Franky
 * Machine learning engineer: Carla - Josue
-* Data analyst: Jesús - Jovany
+* Data analyst: Jovany
+* Cloud engineer: Jesús
 
 ## Introducción
 El presente proyecto se centra en el análisis y la creación de sistemas de recomendación basados en reseñas de usuarios de plataformas populares como Google Maps y Yelp. El objetivo principal es desarrollar herramientas que ayuden a un conglomerado de empresas a comprender mejor la percepción de sus clientes y a tomar decisiones informadas. Para este proyecto, hemos creado una empresa ficticia llamada Data Solutions, que se encargará de implementar soluciones de ciencia de datos para invertir con éxito.
