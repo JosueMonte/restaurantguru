@@ -4,9 +4,10 @@ import re
 import pandas as pd
 import numpy as np
 from scipy.spatial import cKDTree
+from typing import Dict, List, Tuple
 #
 class LocalGeocoder:
-    def __init__(self, csv_path='uscities.csv'):
+    def __init__(self, csv_path='H:/restaurantguru/uscities.csv'):
         # Cargar y preprocesar el dataframe una vez
         self.cities_df = pd.read_csv(csv_path)
         self.cities_df[['lat_rad', 'lng_rad']] = np.deg2rad(self.cities_df[['lat', 'lng']])
@@ -27,19 +28,29 @@ class LocalGeocoder:
         
         return possible_matches.iloc[index]['city'] if len(index) > 0 else None
 
-def process_metadata_files(input_dir, output_file):
+def process_metadata_files(input_dir, output_file, df_info_states):
     processed_data = []
 
-    def extract_address_components(address, name):
+    def extract_address_components(address: str, name: str, city: str, state_id: str, zips: str) -> Tuple[str, str, str, str]:
         try:
+            # Remove name from the address for cleaner processing
             address = address.replace(name + ", ", "")
-            match = re.match(r"^(.*),\s*(.*),\s*(\w{2})\s*(\d{5})$", address)
-            if match:
-                street, city, state, postal_code = match.groups()
+            # Check for full format: street, city, state, postal code, country
+            match_full = re.match(r"^(.*),\s*(.*),\s*(\w{2})\s*(\d{5}),\s*(.*)$", address)
+            if match_full:
+                street, city, state, postal_code, country = match_full.groups()
                 return street, city, state, postal_code
+
+            # Check for shorter format: street, city, state, postal code
+            match_short = re.match(r"^(.*),\s*(.*),\s*(\w{2})\s*(\d{5})$", address)
+            if match_short:
+                street, city, state, postal_code = match_short.groups()
+                return street, city, state, postal_code
+
         except Exception:
             pass
-        return None, None, None, None
+            # Return fallback values if parsing fails
+        return address, city, state_id, zips[:5]
 
     def load_json_file(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
@@ -61,7 +72,13 @@ def process_metadata_files(input_dir, output_file):
                 categories = data.get("category", []) or []
                 
                 if any("restaurant" in category.lower() for category in categories):
-                    street, city, state, postal_code = extract_address_components(data.get("address", ""), data.get("name", ""))
+                    street, city, state, postal_code = extract_address_components(
+                        data.get("address", ""), 
+                        data.get("name", ""), 
+                        data.get("city", ""), 
+                        data.get("state_id", ""), 
+                        data.get("zips", "")
+                    )
                     processed_data.append({
                         "gmap_id": data.get("gmap_id"),
                         "name": data.get("name"),
@@ -151,7 +168,7 @@ def clean_and_merge_reviews(folder_path, output_folder, gmap_id_list):
 
     # Unir todos los archivos parquet generados
     all_files = [os.path.join(output_folder, file) for file in os.listdir(output_folder) if file.endswith(".parquet")]
-    final_df = pd.concat([pd.read_parquet(file) for file in all_files], ignore_index=True)
+    final_df = pd.concat([pd.read_parquet(file) for file in all_files], ignore_index=True).drop_duplicates(inplace=True)
 
     # Mostrar la cantidad total de filas
     print(f"Dataset final: {final_df.shape[0]} filas después de limpiar y unir.")
