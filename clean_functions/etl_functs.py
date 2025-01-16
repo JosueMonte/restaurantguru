@@ -2,15 +2,7 @@ import pandas as pd
 import numpy as np
 from clean_functions.merges_tk import *
 from nltk.corpus import stopwords
-from google.cloud import storage
-import io
-import pyarrow.parquet as pq
-import pyarrow as pa
 import nltk
-##
-bucket_name = 'datosfuentes'
-storage_client = storage.Client(project="proyectrestaurant-447114")
-bucket = storage_client.get_bucket(bucket_name)
 
 class DataPipeline:
     def __init__(self, yelp_path, google_path, yelp_reviews_path, google_reviews_path):
@@ -28,43 +20,68 @@ class DataPipeline:
 
     def merge_data(self):
         result = self.merger.merge_datasets(self.df_google, self.df_yelp)
+        # result.rename(columns={'gmap_id': 'id_G'}, inplace=True)
         result['id'] = range(1, len(result) + 1)
+        return result
     
-    # Limpieza de la columna hours
+    def _normalize_hours(self, value):
+        """
+        Normaliza los horarios a un formato estándar de diccionario
+        """
+        if isinstance(value, np.ndarray):
+            return {day: self._format_hours(hours) for day, hours in value}
+        elif isinstance(value, dict):
+            return {day: hours for day, hours in value.items()}
+        elif isinstance(value, list):
+            return {}  # Maneja el caso de lista vacía
+        return None
+
+    def _format_hours(self, hours_str):
+        """
+        Formatea las cadenas de horario a un formato estándar
+        """
+        if isinstance(hours_str, str):
+            if 'Open 24 hours' in hours_str or 'Open 24 h' in hours_str:
+                return '0:0-0:0'
+        return hours_str
+
+    def _normalize_hours_column(self, result):
+        """
+        Aplica la normalización a la columna 'hours' del DataFrame
+        """
         if 'hours' in result.columns:
-            result['hours'] = result['hours'].apply(lambda x: x if isinstance(x, list) else [])
+            result['hours'] = result['hours'].apply(self._normalize_hours)
         return result
 
-
     def process_reviews(self, result):
-        grouped_id = result[["id", "id_G", "id_Y"]].drop_duplicates(subset=["id_G", "id_Y"])
-        grouped_id.rename(columns={"id": "id_business"}, inplace=True)
-
+        ids_google = result[['id', 'id_G']].dropna().drop_duplicates()
+        ids_yelp = result[['id', 'id_Y']].dropna().drop_duplicates()
+        ids_google.rename(columns={"id": "id_business"}, inplace=True)
+        ids_yelp.rename(columns={"id": "id_business"}, inplace=True)
+        # Formateamos el dataset de reviews de Yelp
         self.df_rev_yelp['origin'] = 'Y'
         self.df_rev_yelp.rename(columns={"stars_y": "stars", "business_id": "id_Y"}, inplace=True)
 
+        # Formateamos el dataset de reviews de Google
         self.df_rev_goo['time'] = pd.to_datetime(self.df_rev_goo['time'], unit='ms')
         self.df_rev_goo['origin'] = 'G'
         self.df_rev_goo['review_id'] = range(1, len(self.df_rev_goo) + 1)
         self.df_rev_goo.drop(columns=["name", "pics", "resp"], inplace=True)
-        self.df_rev_goo.rename(columns={"rating": "stars", "time": "date", "gmap_id": "id_G"}, inplace=True)
+        self.df_rev_goo.rename(columns={"rating": "stars", "time": "date"}, inplace=True)
 
-        grouped_id_unique_y = grouped_id[['id_Y', 'id_business']].drop_duplicates()
-        grouped_id_unique_g = grouped_id[['id_G', 'id_business']].drop_duplicates()
-
-        df_yelp_merged = pd.merge(self.df_rev_yelp, grouped_id_unique_y, on='id_Y', how='left')
-        df_goo_merged = pd.merge(self.df_rev_goo, grouped_id_unique_g, on='id_G', how='left')
-        df_rev = pd.concat([df_yelp_merged, df_goo_merged], ignore_index=True).drop(columns=["review_id"])
-        df_rev['id'] = range(1, len(df_rev) + 1)
+        df_goo_merged = pd.merge(self.df_rev_goo, ids_google, left_on='gmap_id', right_on='id_G', how='inner')
+        df_goo_merged['review_id'] = range(1, len(df_goo_merged) + 1)
+        df_yelp_merged = pd.merge(self.df_rev_yelp, ids_yelp, on='id_Y', how='inner')
+        
+        df_rev = pd.concat([df_yelp_merged, df_goo_merged], ignore_index=True)
+        df_rev= df_rev.rename(columns={'review_id':'id'})
         df_rev['id_business'] = df_rev['id_business'].astype(str)
+        df_rev = df_rev[df_rev['id_business'] != 'nan']
         df_rev = self.process_business_ids(df_rev)
-        buff_rev = io.BytesIO()
-        df_rev.to_parquet(buff_rev,index=False,engine='pyarrow')
-        buff_rev.seek(0)
-        destino="tablas/reviews.parquet"
-        blob_rev = bucket.blob(destino)
-        blob_rev.upload_from_file(buff_rev)
+        df_rev['id'] = df_rev['id'].astype(str)
+        df_rev.drop(columns=['gmap_id']).to_parquet("ETL/reviews.parquet", index=False)
         return df_rev
+
 
     def process_business_ids(self, df):
         df = df.copy()
@@ -76,27 +93,13 @@ class DataPipeline:
         states = result[["state"]].drop_duplicates().reset_index(drop=True)
         states["id"] = range(1, len(states) + 1)
         states.rename(columns={"state": "state_name"}, inplace=True)
-        #carga a gcloud stados
-        buff_states = io.BytesIO()
-        states.to_parquet(buff_states,index=False,engine='pyarrow')
-        buff_states.seek(0)
-        destino="tablas/states.parquet"
-        blob_states = bucket.blob(destino)
-        blob_states.upload_from_file(buff_states)
-        #states.to_parquet("ETL/states.parquet", index=False)
+        states.to_parquet("ETL/states.parquet", index=False)
 
         cities = result[["city", "postal_code", "state"]].drop_duplicates().reset_index(drop=True)
         cities = cities.merge(states, left_on="state", right_on="state_name").drop(columns=["state_name", "state"])
         cities.rename(columns={"id": "id_state", "city": "city_name"}, inplace=True)
         cities["id"] = range(1, len(cities) + 1)
-        #carga a gcloud
-        buff_cities = io.BytesIO()
-        cities.to_parquet(buff_cities,index=False,engine='pyarrow')
-        buff_cities.seek(0)
-        destino="tablas/cities.parquet"
-        blob_cities = bucket.blob(destino)
-        blob_cities.upload_from_file(buff_cities)
-        #cities.to_parquet("ETL/cities.parquet", index=False)
+        cities.to_parquet("ETL/cities.parquet", index=False)
 
         return states, cities
 
@@ -104,68 +107,52 @@ class DataPipeline:
         return ' '.join([word for word in cat.split() if word.lower() not in self.stop_words])
 
     def create_business_tables(self, result, cities_df):
+        # Filtrar categorías que contienen la palabra "restaurant"
+        filtered_categories = [
+            self.clean_category(cat) for sublist in result["categories"] for cat in sublist
+            if "restaurant" in self.clean_category(cat).lower()
+        ]
+
+        # Crear el DataFrame de categorías
         categories = pd.DataFrame(
-            [self.clean_category(cat) for sublist in result["categories"] for cat in sublist],
+            filtered_categories,
             columns=["category_name"]
         ).drop_duplicates().reset_index(drop=True)
         categories["id_category"] = range(1, len(categories) + 1)
-        #carga a gcloud categories
-        buff_categories = io.BytesIO()
-        categories.to_parquet(buff_categories,index=False,engine='pyarrow')
-        buff_categories.seek(0)
-        destino="tablas/categories.parquet"
-        blob_categories = bucket.blob(destino)
-        blob_categories.upload_from_file(buff_categories)
-        #categories.to_parquet("ETL/categories.parquet", index=False)
+        categories.to_parquet("ETL/categories.parquet", index=False)
 
-        business = result[["id", "id_G", "id_Y", "name", "city", "postal_code", "latitude", "longitude"]].copy()
+        # Crear el DataFrame de negocios
+        business = result[["id", "id_G", "id_Y", "name", "city", "postal_code", "latitude", "longitude", 'address', 'hours']].copy()
         business = business.merge(
             cities_df[["postal_code", "city_name", "id"]],
             left_on=["postal_code", "city"],
             right_on=["postal_code", "city_name"],
             how="left"
         ).rename(columns={"id_x": "id", "id_y": "id_city"}).drop(columns=["city_name", "city", "postal_code"])
-        #carga a gcloud business
-        buff_business = io.BytesIO()
-        business.to_parquet(buff_business,index=False,engine='pyarrow')
-        buff_business.seek(0)
-        destino="tablas/business.parquet"
-        blob_business = bucket.blob(destino)
-        blob_business.upload_from_file(buff_business)
-        #business.to_parquet("ETL/business.parquet", index=False)
+        business = self._normalize_hours_column(business)
+        business.drop_duplicates(subset=['id_G','id_Y', 'name']).to_parquet("ETL/business.parquet", index=False)
 
+        # Crear el DataFrame de relaciones negocio-categoría
         business_categories_rows = []
         for idx, row in result.iterrows():
             business_id = row["id"]
             for category in row["categories"]:
                 cleaned_category = self.clean_category(category)
-                category_id = categories[categories["category_name"] == cleaned_category]["id_category"].iloc[0]
-                business_categories_rows.append({
-                    "id_business": business_id,
-                    "id_category": category_id
-                })
+                if "restaurant" in cleaned_category.lower():
+                    category_id = categories[categories["category_name"] == cleaned_category]["id_category"].iloc[0]
+                    business_categories_rows.append({
+                        "id_business": business_id,
+                        "id_category": category_id
+                    })
 
         business_categories = pd.DataFrame(business_categories_rows)
         business_categories["id"] = range(1, len(business_categories) + 1)
-        #carga a gcloud business_categories
-        buff_business_categories = io.BytesIO()
-        business_categories.to_parquet(buff_business_categories,index=False,engine='pyarrow')
-        buff_business_categories.seek(0)
-        destino="tablas/business_categories.parquet"
-        blob_business_categories = bucket.blob(destino)
-        blob_business_categories.upload_from_file(buff_business_categories)
-        #business_categories.to_parquet("ETL/business_categories.parquet", index=False)
+        business_categories.to_parquet("ETL/business_categories.parquet", index=False)
 
         return business, categories, business_categories
 
+
     def create_users_table(self, df_rev):
         users = df_rev[["user_id"]].drop_duplicates().reset_index(drop=True).rename(columns={"user_id": "id"})
-        #carga a gcloud users
-        buff_users = io.BytesIO()
-        users.to_parquet(buff_users,index=False,engine='pyarrow')
-        buff_users.seek(0)
-        destino="tablas/users.parquet"
-        blob_users = bucket.blob(destino)
-        blob_users.upload_from_file(buff_users)
-        #users.to_parquet("ETL/users.parquet", index=False)
+        users.to_parquet("ETL/users.parquet", index=False)
         return users
