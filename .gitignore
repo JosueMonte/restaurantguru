@@ -5,3 +5,4 @@ clean_functions/
 *.CSV
 */reviews_cleaned.csv
 */reviews_preprocessed.csv
+*.parquet
