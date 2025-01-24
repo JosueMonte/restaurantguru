@@ -4,3 +4,6 @@ Data_cleaned/
 *.CSV
 */reviews_cleaned.csv
 */reviews_preprocessed.csv
+clean_functions/
+EDA/
+.venv/
