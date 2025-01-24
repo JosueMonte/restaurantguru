@@ -23,13 +23,13 @@ Desde hace muchos años, tanto Yelp como Google Maps permiten a los usuarios esc
 ### Problemática
 A continuación se detallan los distintos desafíos encontrados:
 1. Conocimiento del cliente: Las empresas necesitan conocer la imagen que los usuarios tienen de ellas a través de un análisis de las reseñas para mejorar su desempeño, valorar sus opiniones y ofrecer servicios personalizados.
-2. Experiencia del usuario: Al usuario se le dificulta la elección del establecimiento adecuado que cumpla con sus preferencias. 
+2. Experiencia del usuario: Al usuario se le dificulta la elección del establecimiento adecuado que cumpla con sus preferencias. Esto se debe a tres motivos: (1) en parte existe un exceso de reseñas, (2) falta de personalización para cada usuario y (3) las reseñas son subjetivas.
 3. Ubicación de locales: Las empresas necesitan identificar las mejores ubicaciones para nuevos locales y así invertir correctamente.
    
-### Posibles soluciones
+### Solución
 1. Desarrollar un sistema de recomendación utilizando algoritmos de machine learning para analizar las opiniones e identificar patrones de preferencia.
-2. Implementar un análisis de sentimiento utilizando técnicas de procesamiento de lenguaje natural (NLP).
-3. Combinar los puntos 1 y 2 y desarrollar un sistema híbrido de recomendación, aprovechando las fortalezas de cada uno.
+2. Implementar un análisis de sentimientos utilizando técnicas de procesamiento de lenguaje natural (NLP).
+3. Simplificar la experiencia del usuario desarrollando un frontend adecuado para que el usuario ingrese una palabra clave y reciba las tres mejores opciones.
 
 ## Objetivos
 1. Desarrollar un sistema de recomendación que sugiera nuevos restaurantes que el usuario probablemente disfrutará, basado en calificaciones previas (aunque no las haya visitado antes), o basado en usuario que tienen gustos similares, o que brinde la posibilidad de, mediante un motor de búsqueda, recomendar el restaurante.
@@ -71,6 +71,9 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 6. Visualización:
    1. Power BI.
    2. Looker Studio.
+
+[Ir al workflow](workflow.pdf)
+
 
 ## Indicadores claves de rendimiento (KPIs)
 A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
