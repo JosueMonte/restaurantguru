@@ -8,6 +8,7 @@ from pathlib import Path
 
 from app.functions import get_states, get_cities
 from app.recommendation import get_recommendations
+from app.recomV2 import get_recommendations2
 
 
 app = FastAPI()
@@ -64,6 +65,7 @@ async def recommend(data: FormData):
 class RecommendationRequest(BaseModel):
     keyword: str
     city: Optional[str] = None
+    aspect: Optional[str] = None
     avg_rating: Optional[float] = None
     business_name: Optional[str] = None
     region: Optional[str] = None
@@ -76,6 +78,19 @@ def recommend(request: RecommendationRequest):
         recommendations = get_recommendations(
             keyword=request.keyword,
             city=request.city
+        )
+        return {"recommendations": recommendations}
+    except Exception as e:
+        return {"error": str(e)}
+    
+    # Endpoint para obtener recomendaciones
+@app.post("/recomV2")
+async def recommend2(request: RecommendationRequest):
+    #svd = TruncatedSVD(n_components=100)
+    try:
+        recommendations = get_recommendations2(
+            keyword=request.keyword,
+            aspect=request.aspect
         )
         return {"recommendations": recommendations}
     except Exception as e:
