@@ -183,7 +183,7 @@ Entonces, se probaron cuatro métodos diferentes:
 Además se desplegó el modelo utilizando tecnología de Google Cloud y con FastAPI se realizó la primera función en Frontend.
 
 ## Cronograma general
-A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
+A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
 <div style="text-align: center;">
   <img src="gantt.png" alt="Cronograma" width="1000"/>
 </div>
