@@ -188,16 +188,19 @@ Además se desplegó el modelo utilizando tecnología de Google Cloud y con Fast
 
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
-<div style="text-align: center;">
-  <img src="src/gantt.png" alt="Cronograma" width="1000"/>
-</div>
+
+<p align="center">
+  <a>
+    <img src="src/gantt.png" alt="Cronograma" width="1200"/>
+  </a>
+</p>
 
 ## Diagrama Entidad - Relación
 El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la estructura de la base de datos, mostrando las entidades, sus atributos y las relaciones entre ellas. Este diagrama permite visualizar cómo interactúan los datos en el sistema y ayuda a comprender la organización de la base de datos.
 
 <p align="center">
   <a href="src/diagrama_ER.pdf">
-    <img src="src/diagrama_ER.png" alt="Diagrama ER" width="600"/>
+    <img src="src/diagrama_ER.png" alt="Diagrama ER" width="1000"/>
   </a>
 </p>
 
@@ -206,7 +209,7 @@ Este archivo describe el workflow de un sistema de recomendación, abarcando des
 
 <p align="center">
   <a href="src/workflow.pdf">
-    <img src="src/workflow.png" alt="Workflow" width="600"/>
+    <img src="src/workflow.png" alt="Workflow" width="1200"/>
   </a>
 </p>
 
@@ -222,7 +225,7 @@ Este archivo describe el workflow de un sistema de recomendación, abarcando des
 
 <p align="center">
   <a>
-    <img src="Dashboard/1_KPI_Fidelizacion.PNG" alt="KPI1" width="600"/>
+    <img src="Dashboard/1_KPI_Fidelizacion.PNG" alt="KPI1" width="1200"/>
   </a>
 </p>
 
@@ -238,7 +241,7 @@ Este archivo describe el workflow de un sistema de recomendación, abarcando des
 
 <p align="center">
   <a>
-    <img src="Dashboard/2_KPI_Reseñas.PNG" alt="KPI2" width="600"/>
+    <img src="Dashboard/2_KPI_Reseñas.PNG" alt="KPI2" width="1200"/>
   </a>
 </p>
 
@@ -254,6 +257,6 @@ Este archivo describe el workflow de un sistema de recomendación, abarcando des
 
 <p align="center">
   <a>
-    <img src="Dashboard/3_KPI_Satisfaccion.PNG" alt="KPI3" width="600"/>
+    <img src="Dashboard/3_KPI_Satisfaccion.PNG" alt="KPI3" width="1200"/>
   </a>
 </p>
