@@ -71,7 +71,7 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 6. Visualización:
    1. Power BI.
 
-[Para más detalle: Ir al workflow](workflow.pdf)
+* [Para más detalle: Ir al workflow](workflow.pdf)
 
 ## Diagrama de entidad-relación
 
@@ -81,8 +81,8 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 
 ## Diccionario de datos
 Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Esto quiere decir que existe un dataset de Google Maps y otro de Yelp, para tener un panorama amplio de lo que significan cada variable se puede acceder a dicha carpeta.
-[Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosGoogle.md)
-[Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosYelp.md)
+1. [Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosGoogle.md)
+2. [Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosYelp.md)
 
 ## ETL
 En cuanto al procesamiento de los datos, se realizó lo siguiente:
