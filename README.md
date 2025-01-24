@@ -63,7 +63,7 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 4. Machine Learning:
    1. Scikit-learn.
    2. NLTK y SpaCy.
-   3. Distilbert.
+   3. Hugging Face (DistilBERT).
 5. Despliegue:
    1. Docker.
    2. Registry container.
@@ -71,7 +71,7 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 6. Visualización:
    1. Power BI.
 
-* [Para más detalle: Ir al workflow](workflow.pdf)
+* [Ver workflow](workflow.pdf)
 
 ## Diagrama de entidad-relación
 Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Es decir, no se hizo distinción entre el dataset de Google Maps y el de Yelp, sino que se realizó un match.
@@ -95,6 +95,10 @@ Se realizó un análisis exploratorio tanto del dataset de Google Maps como tamb
 1. [Ir al EDA de Google](EDA/EDA_Google_MetaData.ipynb)
 2. [Ir al EDA de Yelp](EDA/EDA_yelp.ipynb)
 
+Además, se realizó un EDA produndo, el cual fue utilizado para el posterior análisis de sentimiento y sistema de recomendación.
+* [Ir al EDA profundo](AnalisisDeSentimiento/Sprint3/EDAProfundo.ipynb)
+
+## Dashboard
 
 ## Indicadores claves de rendimiento (KPIs)
 A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
@@ -159,7 +163,24 @@ Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de
 ## Consideraciones adicionales para los KPIs
 Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
 
+## Análisis de sentimiento
+Se implementó el análisis de sentimiento con Hugging Face para determinar si una reseña tienen connotación positiva, negativa o neutra. Además se realizó un análisis por aspecto donde se puede observar por reseña si tiene una connotación positiva, neutra o negativa según cuatro aspectos: precio, comida, servicio, ambiente. En este proceso, se elaboró un análisis para observar cuales son los aspectos más priorizados. Finalmente, se prepararon los datos para realizar un sistema de recomendación únicamente utilizando análisis por aspecto.
 
+* Para más detalle: [Ir a la carpeta de Análisis de sentimiento](AnálisisDeSentimiento/)
+
+## Sistema de recomendacion
+Se implementó un modelo de clasificación con aprendizaje supervisado basado en un algoritmo de similitud de coseno. El objetivo es que el sistema arroje un a recomendación de los mejores tres restaurantes por cada algoritmo utilizado.
+Entonces, se probaron cuatro métodos diferentes:
+1. Filtro de contenido: dando la posibilidad al usuario de ingresar una palabra clave, un aspecto y una determinada ciudad.
+   1. En cuanto al aspecto, se trabajó con análisis de sentimiento, brindando la posibilidad de priorizar por: precio, comida, servicio, ambiente.
+2. Filtro colaborativo: se brinda una recomendación automática de acuerdo con los restaurantes que el usuario ha reseñado.
+3. Filtro colaborativo: se brinda una recomendación automática siguiendo las mejores calificaciones del usuario.
+4. Filtro por análisis de aspecto: se brinda una recomendación en función de como puntúa de 0 a 1 un usuario a cuatro aspectos princiales: precio, comida, servicio, ambiente.
+
+* Para ver como se desarrollaron los primeros tres filtros: [Ir a la carpeta de sistema de recomendación](SistemaDeRecomendacion/)
+* Para ver como se desarralló el filtro por análisis de aspecto: [Ir al sistema de recomendación por análisis de sentimiento](AnalisisDeSentimiento/Sprint3/SistemaDeRecomendacion.ipynb)
+
+Además se desplegó el modelo utilizando tecnología de Google Cloud y con FastAPI se realizó la primera función en Frontend.
 
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
