@@ -108,9 +108,11 @@ A continuación, se mencionan los KPI que se visualizarán en el Dashboard para 
 
 **Fórmula para calcular el KPI:**
 
-<p align="center">
-  <b>Satisfacción del cliente</b> = (Calificación promedio de restaurantes recomendados (trimestre actual) / Calificación promedio de restaurantes recomendados (trimestre anterior)) * 100
-</p>
+
+$$
+\text{Satisfacción del cliente} = \left( \frac{\text{Calificación promedio de restaurantes recomendados (trimestre actual)}}{\text{Calificación promedio de restaurantes recomendados (trimestre anterior)}} \right) \times 100
+$$
+
 
 * __`Rendimiento del modelo (acuraccy):`__
 
@@ -118,15 +120,17 @@ A continuación, se mencionan los KPI que se visualizarán en el Dashboard para 
 
 **Fórmula para calcular el KPI:**
 
-<p align="center">
-  <b>Rendimiento del modelo</b> = (Proporción de recomendaciones correctas (trimestre actual)) / (Proporción de recomendaciones correctas (trimestre anterior)) * 100
-</b>
+$$
+\text{Rendimiento del modelo} =  \left( \frac{\text{Proporción de recomendaciones correctas (trimestre actual)}}{\text{Proporción de recomendaciones correctas (trimestre anterior)}} \right) \times 100
+$$
+
 
 **Fórmula para calcular la proporción de recomendaciones correctas:**
 
-<p align="center">
-   <b>Proporción de recomendaciones correctas</b> = (Recomendaciones correctas / Total de recomendaciones) * 100
-</b>
+$$
+\text{Proporción de recomendaciones correctas} = \left( \frac{\text{Recomendaciones correctas}}{\text{Total de recomendaciones}} \right) \times 100
+$$
+
 
 * __`Fidelización del cliente:`__
 
@@ -134,15 +138,15 @@ A continuación, se mencionan los KPI que se visualizarán en el Dashboard para 
 
 **Fórmula para calcular el KPI:**
 
-<p align="center">
-   <b>Fidelización del cliente</b>  = (Tasa de clientes recurrentes (trimestre actual)) / (Tasa de clientes recurrentes (trimestre anterior)) * 100
-</b>
+$$
+\text{Fidelización del cliente} = \left( \frac{\text{Tasa de clientes recurrentes (trimestre actual)}}{\text{Tasa de clientes recurrentes (trimestre anterior)}} \right) \times 100
+$$
 
 **Fórmula para calcular la tasa de clientes recurrentes:**
 
-<p align="center">
-   <b>Tasa de clientes recurrentes</b> = (Clientes recurrentes / Clientes únicos totales) * 100
-</b>
+$$
+\text{Tasa de clientes recurrentes} = \left( \frac{\text{Clientes recurrentes}}{\text{Clientes únicos totales}} \right) \times 100
+$$
 
 * __`Tasa de reseñas:`__
 
@@ -150,9 +154,9 @@ A continuación, se mencionan los KPI que se visualizarán en el Dashboard para 
 
 **Fórmula para calcular el KPI:**
 
-<p align="center">
-   <b>Tasa de reseñas</b> = (Número de reseñas (trimestres actual) / Número de reseñas (trimestres anterior)) * 100
-</b>
+$$
+\text{Tasa de reseñas} = \left( \frac{\text{Número de reseñas (trimestre actual)}}{\text{Número de reseñas (trimestre anterior)}} \right) \times 100
+$$
 
 ## Encuesta de satisfacción
 Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
@@ -185,5 +189,71 @@ Además se desplegó el modelo utilizando tecnología de Google Cloud y con Fast
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
 <div style="text-align: center;">
-  <img src="gantt.png" alt="Cronograma" width="1000"/>
+  <img src="src/gantt.png" alt="Cronograma" width="1000"/>
 </div>
+
+## Diagrama Entidad - Relación
+El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la estructura de la base de datos, mostrando las entidades, sus atributos y las relaciones entre ellas. Este diagrama permite visualizar cómo interactúan los datos en el sistema y ayuda a comprender la organización de la base de datos.
+
+<p align="center">
+  <a href="src/diagrama_ER.pdf">
+    <img src="src/diagrama_ER.png" alt="Diagrama ER" width="600"/>
+  </a>
+</p>
+
+## Workflow
+Este archivo describe el workflow de un sistema de recomendación, abarcando desde la obtención de datos hasta su despliegue. Incluye etapas clave como ETL (Extracción, Transformación y Carga), EDA (Análisis Exploratorio de Datos), modelamiento de Machine Learning, y despliegue en la nube. Utiliza diversas herramientas como Google Cloud Platform (BigQuery, Cloud Storage, Cloud Functions), además de APIs como Google Maps y Cloud Natural Language API. Los principales entregables son un dashboard interactivo y el sistema de recomendación desplegado en la nube.
+
+<p align="center">
+  <a href="src/workflow.pdf">
+    <img src="src/workflow.png" alt="Workflow" width="600"/>
+  </a>
+</p>
+
+## Dashboard
+
+### 1. **KPI Fidelización del Cliente**  
+   - **Objetivo:** Aumentar la fidelización del cliente en un **10% cada trimestre**.  
+   - **Componentes clave:**  
+     - Filtros por restaurante, año, trimestre y cumplimiento.  
+     - Tabla con la recurrencia de clientes, el porcentaje de incremento y el cumplimiento de la meta.  
+     - Indicador gráfico mostrando el progreso hacia el objetivo.  
+     - Resumen del cumplimiento de los trimestres aprobados y no aprobados.
+
+<p align="center">
+  <a>
+    <img src="Dashboard/1_KPI_Fidelizacion.PNG" alt="KPI1" width="600"/>
+  </a>
+</p>
+
+---
+
+### 2. **KPI Tasa de Reseñas**  
+   - **Objetivo:** Aumentar la tasa de reseñas en un **20% cada trimestre**.  
+   - **Componentes clave:**  
+     - Filtros por restaurante, ciudad, sucursal y año.  
+     - Tabla con la cantidad de reseñas, el porcentaje de incremento y el cumplimiento del objetivo.  
+     - Indicador gráfico que mide el progreso trimestral.  
+     - Resumen con trimestres aprobados y no aprobados para evaluar el cumplimiento.
+
+<p align="center">
+  <a>
+    <img src="Dashboard/2_KPI_Reseñas.PNG" alt="KPI2" width="600"/>
+  </a>
+</p>
+
+---
+
+### 3. **KPI Satisfacción del Cliente**  
+   - **Objetivo:** Aumentar la satisfacción del cliente en un **10% cada trimestre**.  
+   - **Componentes clave:**  
+     - Filtros por restaurante, ciudad, sucursal y año.  
+     - Tabla con la calificación promedio, diferencia trimestral y cumplimiento de la meta.  
+     - Medidor gráfico que representa el progreso de satisfacción.  
+     - Resumen con la cantidad de trimestres aprobados y no aprobados.
+
+<p align="center">
+  <a>
+    <img src="Dashboard/3_KPI_Satisfaccion.PNG" alt="KPI3" width="600"/>
+  </a>
+</p>
