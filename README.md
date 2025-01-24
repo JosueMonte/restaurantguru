@@ -76,8 +76,10 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 ## Diagrama de entidad-relación
 
 <div style="text-align: center;">
+  <h2>Diagrama de entidad-relacion</h2>
   <img src="diagram_ER.pdf" alt="Diagrama de entidad-relacion" width="1000"/>
 </div>
+
 
 ## Diccionario de datos
 Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Esto quiere decir que existe un dataset de Google Maps y otro de Yelp, para tener un panorama amplio de lo que significan cada variable se puede acceder a dicha carpeta.
@@ -86,15 +88,15 @@ Como se observa en el diagrama de entidad relación, se unificaron los datasets 
 
 ## ETL
 En cuanto al procesamiento de los datos, se realizó lo siguiente:
-1. [Para ver el codigo para realizar el web scarping: Ir al Scrap](ETL/Scrap.ipynb)
-2. [Para ver el código para las funciones de limpieza y transformación de los datos: Ir a la carpeta clean_functions](clean_functions/)
-3. [Para ver donde se alojaron los archivos limpios provenientes del punto 2: Ir a la carpeta Data_cleand](Data_cleande/)
-4. [Para ver como se ejecutan las funciones para el ETL: Ir al ETL](ETL/ETL.ipynb)
+1. Para ver el codigo para realizar el web scarping: [Ir al Scrap](ETL/Scrap.ipynb)
+2. Para ver el código para las funciones de limpieza y transformación de los datos: [Ir a la carpeta clean_functions](clean_functions/)
+3. Para ver donde se alojaron los archivos limpios provenientes del punto 2: [Ir a la carpeta Data_cleand](Data_cleande/)
+4. Para ver como se ejecutan las funciones para el ETL: [Ir al ETL](ETL/ETL.ipynb)
 
 ## EDA
 Se realizó un análisis exploratorio tanto del dataset de Google Maps como también con el de Yelp.
-[Para más detalle: Ir al EDA de Google](EDA/EDA_Google_MetaData.ipynb)
-[Para más detalle: Ir al EDA de Yelp](EDA/EDA_yelp.ipynb)
+1. [Ir al EDA de Google](EDA/EDA_Google_MetaData.ipynb)
+2. [Ir al EDA de Yelp](EDA/EDA_yelp.ipynb)
 
 
 ## Indicadores claves de rendimiento (KPIs)
