@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Guru</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus/dist/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/element-plus"></script>
+    <!-- Google Maps API -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB75TNL0vSWLj9rTpfneuwmgGpw6Yzd_EQ"></script>
+</head>
+<body>
+    <header>
+        <img src="/static/res.webp" alt="Find your ideal flavor" class="header-image">
+        <h1>Find your ideal flavor</h1>
+    </header>
+    <main id="app">
+        <div v-if="loading" class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+        <section v-if="!submitted" class="form-container">
+            <h2>Fill the form</h2>
+            <el-form @submit.prevent="submitForm" label-position="top">
+                <el-form-item label="Name:">
+                    <el-input v-model="form.name" placeholder="Enter your name" required></el-input>
+                </el-form-item>
+                <el-form-item label="State:">
+                    <el-select v-model="form.state" placeholder="Select a state" @change="fetchCities" filterable>
+                        <el-option v-for="state in states" :key="state.id" :label="state.name" :value="state.id"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="City:">
+                    <el-select v-model="form.city" placeholder="Select a city" filterable :disabled="!form.state">
+                        <el-option v-for="city in cities" :key="city.id" :label="city.name" :value="city.name"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="What are you searching for?">
+                    <el-input v-model="form.keyword" placeholder="Today is..." required></el-input>
+                </el-form-item>
+                <el-button type="primary" native-type="submit" class="center-button">Submit</el-button>
+            </el-form>
+        </section>
+        <section v-else>
+            <h2>Recommendations for {{ form.name }}:</h2>
+            <div class="recommendation-container">
+                <div v-for="restaurant in recommendations" :key="restaurant.id_business" class="restaurant-card">
+                    <h3>{{ restaurant.business_name }}</h3>
+                    <p><strong>Category:</strong> {{ restaurant.category_name }}</p>
+                    <p><strong>Address:</strong> {{ restaurant.business_address }}</p>
+                    <p><strong>City:</strong> {{ restaurant.city_name }}</p>
+                    <!-- <p><strong>Region:</strong> {{ restaurant.region }}</p> -->
+                    <p><strong>Rating:</strong> 
+                        <span v-for="star in Math.floor(restaurant.avg_rating)" :key="star" class="fa fa-star"></span>
+                        <span v-if="restaurant.avg_rating % 1 >= 0.5" class="fa fa-star-half-alt"></span>
+                        <span class="rating-value">({{ restaurant.avg_rating.toFixed(1) }})</span>
+                    </p>
+                    <!-- <p><strong>Description:</strong> {{ restaurant.description || "No description available." }}</p> -->
+                    <p><strong>Hours:</strong></p>
+                    <ul>
+                        <li v-for="(hours, day) in restaurant.hours" :key="day">
+                            {{ day }}: {{ hours }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="map" class="map-container"></div>
+            <button @click="resetForm" class="reset-button center-button">Reset</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Restaurant Guru. All rights reserved.</p>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    states: [],
+                    cities: [],
+                    form: {
+                        name: '',
+                        state: '',
+                        city: '',
+                        keyword: ''
+                    },
+                    submitted: false,
+                    recommendations: [],
+                    loading: false
+                };
+            },
+            methods: {
+                async fetchStates() {
+                    try {
+                        const response = await axios.get('/states');
+                        this.states = response.data.states;
+                    } catch (error) {
+                        console.error("Error fetching states:", error);
+                    }
+                },
+                async fetchCities() {
+                    if (this.form.state) {
+                        try {
+                            const response = await axios.get(`/cities/${this.form.state}`);
+                            this.cities = response.data.cities;
+                        } catch (error) {
+                            console.error("Error fetching cities:", error);
+                        }
+                    } else {
+                        this.cities = [];
+                    }
+                },
+                async submitForm() {
+                    this.loading = true
+                    try {
+                        const response = await axios.post('/recommendations', {
+                            keyword: this.form.keyword,
+                            city: this.form.city.trim()
+                        });
+                        this.recommendations = response.data.recommendations;
+                        this.submitted = true;
+                        this.initializeMap();
+                        this.loading = false
+                    } catch (error) {
+                        console.error("Error submitting the form:", error);
+                        this.loading = false
+                    }
+                },
+                initializeMap() {
+                    const darkModeStyles = [
+                        {
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#212121" }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.icon",
+                            "stylers": [
+                                { "visibility": "off" }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#757575" }
+                            ]
+                        },
+                        {
+                            "elementType": "labels.text.stroke",
+                            "stylers": [
+                                { "color": "#212121" }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#757575" }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.country",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#9e9e9e" }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.land_parcel",
+                            "stylers": [
+                                { "visibility": "off" }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative.locality",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#bdbdbd" }
+                            ]
+                        },
+                        {
+                            "featureType": "poi",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#757575" }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#181818" }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#616161" }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [
+                                { "color": "#1b1b1b" }
+                            ]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry.fill",
+                            "stylers": [
+                                { "color": "#2c2c2c" }
+                            ]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#8a8a8a" }
+                            ]
+                        },
+                        {
+                            "featureType": "road.arterial",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#373737" }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#3c3c3c" }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway.controlled_access",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#4e4e4e" }
+                            ]
+                        },
+                        {
+                            "featureType": "road.local",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#616161" }
+                            ]
+                        },
+                        {
+                            "featureType": "transit",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#757575" }
+                            ]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "geometry",
+                            "stylers": [
+                                { "color": "#000000" }
+                            ]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                                { "color": "#3d3d3d" }
+                            ]
+                        }
+                    ];
+
+                    this.$nextTick(() => {
+                        const bounds = new google.maps.LatLngBounds();
+                        const map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 12,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            styles: darkModeStyles,
+                        });
+
+                        this.recommendations.forEach((restaurant) => {
+                            const position = new google.maps.LatLng(restaurant.latitude, restaurant.longitude);
+                            bounds.extend(position);
+                            new google.maps.Marker({
+                                position,
+                                map,
+                                title: restaurant.name,
+                            });
+                        });
+
+                        map.fitBounds(bounds);
+                    });
+                },
+                resetForm() {
+                    this.submitted = false;
+                    this.form = { name: '', state: '', city: '', keyword: '' };
+                    this.recommendations = [];
+                }
+            },
+            mounted() {
+                this.fetchStates();
+            }
+        });
+
+        app.use(ElementPlus).mount('#app');
+    </script>
+</body>
+</html>

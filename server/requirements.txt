@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+google-cloud-bigquery
+google-cloud-storage
+google-auth
+pydantic
+scikit-learn
+pandas
+fastparquet
+pyarrow
