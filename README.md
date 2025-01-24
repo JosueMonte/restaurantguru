@@ -46,33 +46,47 @@ La lista de Estados que comprende este proyecto es: `[NY, FL, PA, NJ, GA, VA, NC
 ## Stack tecnológico
 A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 1. Fuente de datos:
-   1. API de Yelp.
-   2. API de Google Maps.
-   3. Google Drive.
-2. Procesamiento de datos:
-   1. Apache Spark.
-   2. Python.
-   3. Pandas.
-   4. Google Cloud Big Query.
-3. Análisis exploratorio de datos:
+   1. SerpAPI: 
+      1. Yelp.
+      2. Google Maps.
+2. Pipeline ETL:
+   1. Cloud Scheduler.
+   2. Cloud Storage.
+   3. PubSub.
+   4. Cloud Functions.
+   5. Big Query.
+3. EDA:
    1. NumPy.
    2. Matplotlib y Seaborn.
    3. Plotly.
    4. Scikit-learn.
 4. Machine Learning:
    1. Scikit-learn.
-   2. TensorFlow o PyTorch.
-   3. NLTK y SpaCy.
-   4. Pickle.
-   5. Huggin Face (BERT).
+   2. NLTK y SpaCy.
+   3. Distilbert.
 5. Implementación:
    1. Google Cloud Run.
    2. Google Cloud Build.
 6. Visualización:
    1. Power BI.
-   2. Looker Studio.
 
-[Ir al workflow](workflow.pdf)
+[Para más detalle: Ir al workflow](workflow.pdf)
+
+## Diagrama de entidad-relación
+
+<div style="text-align: center;">
+  <img src="diagram_ER.png" alt="Diagrama de entidad-relacion" width="1000"/>
+</div>
+
+## ETL
+En cuanto al procesamiento de los datos, se trabajó con dos archivos, uno para realizar web scraping de Google Maps y Yelp, y otro para ejecutar funciones para el ETL.
+[Para más detalle: Ir al ETL ](ETL/ETL.ipynb)
+[Para más detalle: Ir al Scrap](ETL/Scrap.ipynb)
+
+## EDA
+Se realizó un análisis exploratorio tanto del dataset de Google Maps como también con el de Yelp.
+[Para más detalle: Ir al EDA de Google](EDA/EDA_Google_MetaData.ipynb)
+[Para más detalle: Ir al EDA de Yelp](EDA/EDA_yelp.ipynb)
 
 
 ## Indicadores claves de rendimiento (KPIs)
@@ -138,17 +152,10 @@ Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de
 ## Consideraciones adicionales para los KPIs
 Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
 
+
+
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara las tareas asignadas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
 <div style="text-align: center;">
   <img src="gantt.png" alt="Cronograma" width="1000"/>
 </div>
-
-## Diagrama de enteridad-relación
-
-<div style="text-align: center;">
-  <img src="E-R.png" alt="Diagrama de entidad-relacion" width="1000"/>
-</div>
-
-## Fuente de los datos:
-Los datasets provienen de Yelp y Google Maps.
