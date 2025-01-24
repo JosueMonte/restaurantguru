@@ -4,6 +4,7 @@ from clean_functions.merges_tk import *
 from nltk.corpus import stopwords
 import nltk
 
+#
 class DataPipeline:
     def __init__(self, yelp_path, google_path, yelp_reviews_path, google_reviews_path):
         self.df_yelp = pd.read_parquet(yelp_path)

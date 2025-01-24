@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from scipy.spatial import cKDTree
 from typing import Dict, List, Tuple
-#
+##
 class LocalGeocoder:
     def __init__(self, csv_path='clean_functions/uscities.csv'):
         # Cargar y preprocesar el dataframe una vez
