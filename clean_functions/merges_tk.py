@@ -148,13 +148,13 @@ class RestaurantDataCleaner:
         ]
         df = df.rename(columns={"business_id": "id_Y"})
         df["id_G"] = np.nan
-        df = df.drop(columns=["attributes", "stars", "review_count", "is_open"], errors='ignore')
+        df = df.drop(columns=["attributes", "review_count", "is_open"], errors='ignore')
         df["categories"] = df["categories"].apply(lambda x: [item.strip() for item in x.split(",")] if isinstance(x, str) else [])
         return df
 
     def clean_google_data(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.rename(columns={"gmap_id": "id_G"})
-        df = df.drop(columns=["stars", "review_count"], errors='ignore')
+        df = df.drop(columns=["review_count"], errors='ignore')
         df["id_Y"] = np.nan
         return df
 

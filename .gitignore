@@ -1,9 +1,6 @@
 # Ignorar la carpeta datasets
 datasets/
 Data_cleaned/
-clean_functions/
 *.CSV
-*.csv
 */reviews_cleaned.csv
 */reviews_preprocessed.csv
-*.parquet
