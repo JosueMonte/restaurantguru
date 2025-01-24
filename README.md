@@ -74,15 +74,12 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 * [Para más detalle: Ir al workflow](workflow.pdf)
 
 ## Diagrama de entidad-relación
+Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Es decir, no se hizo distinción entre el dataset de Google Maps y el de Yelp, sino que se realizó un match.
 
-<div style="text-align: center;">
-  <h2>Diagrama de entidad-relacion</h2>
-  <img src="diagram_ER.pdf" alt="Diagrama de entidad-relacion" width="1000"/>
-</div>
-
+* [Ver diagrama de entidad-relacion](diagram_ER.pdf)
 
 ## Diccionario de datos
-Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Esto quiere decir que existe un dataset de Google Maps y otro de Yelp, para tener un panorama amplio de lo que significan cada variable se puede acceder a dicha carpeta.
+Para tener un panorama amplio de lo que significa cada variable y entender el origen de los dataset, se puede acceder a la carpeta de diccionario de datos.
 1. [Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosGoogle.md)
 2. [Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosYelp.md)
 
