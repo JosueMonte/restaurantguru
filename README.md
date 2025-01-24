@@ -64,9 +64,10 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
    1. Scikit-learn.
    2. NLTK y SpaCy.
    3. Distilbert.
-5. Implementación:
-   1. Google Cloud Run.
-   2. Google Cloud Build.
+5. Despliegue:
+   1. Docker.
+   2. Registry container.
+   3. Cloud Run.
 6. Visualización:
    1. Power BI.
 
@@ -78,10 +79,17 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
   <img src="diagram_ER.png" alt="Diagrama de entidad-relacion" width="1000"/>
 </div>
 
+## Diccionario de datos
+Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Esto quiere decir que existe un dataset de Google Maps y otro de Yelp, para tener un panorama amplio de lo que significan cada variable se puede acceder a dicha carpeta.
+[Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosGoogle.md)
+[Ir al Diccionario de datos de Google Maps](DiccionariosDeDatos/DiccionarioDeDatosYelp.md)
+
 ## ETL
-En cuanto al procesamiento de los datos, se trabajó con dos archivos, uno para realizar web scraping de Google Maps y Yelp, y otro para ejecutar funciones para el ETL.
-[Para más detalle: Ir al ETL ](ETL/ETL.ipynb)
-[Para más detalle: Ir al Scrap](ETL/Scrap.ipynb)
+En cuanto al procesamiento de los datos, se realizó lo siguiente:
+1. [Para ver el codigo para realizar el web scarping: Ir al Scrap](ETL/Scrap.ipynb)
+2. [Para ver el código para las funciones de limpieza y transformación de los datos: Ir a la carpeta clean_functions](clean_functions/)
+3. [Para ver donde se alojaron los archivos limpios provenientes del punto 2: Ir a la carpeta Data_cleand](Data_cleande/)
+4. [Para ver como se ejecutan las funciones para el ETL: Ir al ETL](ETL/ETL.ipynb)
 
 ## EDA
 Se realizó un análisis exploratorio tanto del dataset de Google Maps como también con el de Yelp.
