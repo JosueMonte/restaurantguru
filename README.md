@@ -76,7 +76,7 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 ## Diagrama de entidad-relación
 
 <div style="text-align: center;">
-  <img src="diagram_ER.png" alt="Diagrama de entidad-relacion" width="1000"/>
+  <img src="diagram_ER.pdf" alt="Diagrama de entidad-relacion" width="1000"/>
 </div>
 
 ## Diccionario de datos
