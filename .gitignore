@@ -1,0 +1,6 @@
+# Ignorar la carpeta datasets
+datasets/
+Data_cleaned/
+*.CSV
+*/reviews_cleaned.csv
+*/reviews_preprocessed.csv
