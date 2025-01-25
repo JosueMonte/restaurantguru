@@ -78,7 +78,7 @@ A continuación se visualiza un cronograma de Gantt, el cual muestra de manera c
 
 <p align="center">
   <a>
-    <img src="src/Gantt.png" alt="Cronograma" width="1200"/>
+    <img src="src/Gantt.PNG" alt="Cronograma" width="1200"/>
   </a>
 </p>
 
