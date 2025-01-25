@@ -71,14 +71,20 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 6. Visualización:
    1. Power BI.
 
-* Para más detalle [Ver workflow](workflow.pdf)
-Este archivo describe el workflow de un sistema de recomendación, abarcando desde la obtención de datos hasta su despliegue. Incluye etapas clave como ETL (Extracción, Transformación y Carga), EDA (Análisis Exploratorio de Datos), modelamiento de Machine Learning, y despliegue en la nube. Utiliza diversas herramientas como Google Cloud Platform (BigQuery, Cloud Storage, Cloud Functions), además de APIs como Google Maps y Cloud Natural Language API. Los principales entregables son un dashboard interactivo y el sistema de recomendación desplegado en la nube.
+* Para más detalle [Ver workflow](workflow.pdf). Este archivo describe el workflow de un sistema de recomendación, abarcando desde la obtención de datos hasta su despliegue. Incluye etapas clave como ETL (Extracción, Transformación y Carga), EDA (Análisis Exploratorio de Datos), modelamiento de Machine Learning, y despliegue en la nube. Utiliza diversas herramientas como Google Cloud Platform (BigQuery, Cloud Storage, Cloud Functions), además de APIs como Google Maps y Cloud Natural Language API. Los principales entregables son un dashboard interactivo y el sistema de recomendación desplegado en la nube.
 
+## Cronograma general
+A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
+
+<p align="center">
+  <a>
+    <img src="src/Gantt.png" alt="Cronograma" width="1200"/>
+  </a>
+</p>
 
 ## Diagrama de entidad-relación
-Como se observa en el diagrama de entidad relación, se unificaron los datasets y se trabajó con dichas variables. Es decir, no se hizo distinción entre el dataset de Google Maps y el de Yelp, sino que se realizó un match.
-
-* [Ver diagrama de entidad-relacion](diagram_ER.pdf)
+El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la estructura de la base de datos, mostrando las entidades, sus atributos y las relaciones entre ellas. Este diagrama permite visualizar cómo interactúan los datos en el sistema y ayuda a comprender la organización de la base de datos.
+* Para más detalle [Ver diagrama de entidad-relacion](diagram_ER.pdf)
 
 ## Diccionario de datos
 Para tener un panorama amplio de lo que significa cada variable y entender el origen de los dataset, se puede acceder a la carpeta de diccionario de datos.
@@ -100,75 +106,6 @@ Se realizó un análisis exploratorio tanto del dataset de Google Maps como tamb
 Además, se realizó un EDA produndo, el cual fue utilizado para el posterior análisis de sentimiento y sistema de recomendación.
 * [Ir al EDA profundo](AnalisisDeSentimiento/Sprint3/EDAProfundo.ipynb)
 
-## Dashboard
-
-## Indicadores claves de rendimiento (KPIs)
-A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
-* __`Satisfacción del cliente:`__
-
-**Objetivo:** Aumentar la calificación promedio por establecimiento recomendado en un 10 % para el próximo trimestre.
-
-**Fórmula para calcular el KPI:**
-
-
-$$
-\text{Satisfacción del cliente} = \left( \frac{\text{Calificación promedio de restaurantes recomendados (trimestre actual)}}{\text{Calificación promedio de restaurantes recomendados (trimestre anterior)}} \right) \times 100
-$$
-
-
-* __`Rendimiento del modelo (acuraccy):`__
-
-**Objetivo:** Incrementar la proporción de recomendaciones correctas en un 10 % para el próximo trimestre.
-
-**Fórmula para calcular el KPI:**
-
-$$
-\text{Rendimiento del modelo} =  \left( \frac{\text{Proporción de recomendaciones correctas (trimestre actual)}}{\text{Proporción de recomendaciones correctas (trimestre anterior)}} \right) \times 100
-$$
-
-
-**Fórmula para calcular la proporción de recomendaciones correctas:**
-
-$$
-\text{Proporción de recomendaciones correctas} = \left( \frac{\text{Recomendaciones correctas}}{\text{Total de recomendaciones}} \right) \times 100
-$$
-
-
-* __`Fidelización del cliente:`__
-
-**Objetivo:** Incrementar la tasa de clientes recurrentes en un 10 % para el próximo trimestre.
-
-**Fórmula para calcular el KPI:**
-
-$$
-\text{Fidelización del cliente} = \left( \frac{\text{Tasa de clientes recurrentes (trimestre actual)}}{\text{Tasa de clientes recurrentes (trimestre anterior)}} \right) \times 100
-$$
-
-**Fórmula para calcular la tasa de clientes recurrentes:**
-
-$$
-\text{Tasa de clientes recurrentes} = \left( \frac{\text{Clientes recurrentes}}{\text{Clientes únicos totales}} \right) \times 100
-$$
-
-* __`Tasa de reseñas:`__
-
-**Objetivo:** Aumentar el número de reseñas en un 20 % para el próximo trimestre.
-
-**Fórmula para calcular el KPI:**
-
-$$
-\text{Tasa de reseñas} = \left( \frac{\text{Número de reseñas (trimestre actual)}}{\text{Número de reseñas (trimestre anterior)}} \right) \times 100
-$$
-
-## Encuesta de satisfacción
-Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
-1. Califique el establecimiento con estrellas del 1 al 5.
-2. Evalúe su satisfacción: positiva, neutra o negativa.
-3. Indique si es su primera visita o una visita repetida.
-
-## Consideraciones adicionales para los KPIs
-Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
-
 ## Análisis de sentimiento
 Se implementó el análisis de sentimiento con Hugging Face para determinar si una reseña tienen connotación positiva, negativa o neutra. Además se realizó un análisis por aspecto donde se puede observar por reseña si tiene una connotación positiva, neutra o negativa según cuatro aspectos: precio, comida, servicio, ambiente. En este proceso, se elaboró un análisis para observar cuales son los aspectos más priorizados. Finalmente, se prepararon los datos para realizar un sistema de recomendación únicamente utilizando análisis por aspecto.
 
@@ -188,35 +125,27 @@ Entonces, se probaron cuatro métodos diferentes:
 
 Además se desplegó el modelo utilizando tecnología de Google Cloud y con FastAPI se realizó la primera función en Frontend.
 
-## Cronograma general
-A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
-
-<p align="center">
-  <a>
-    <img src="src/Gantt.png" alt="Cronograma" width="1200"/>
-  </a>
-</p>
-
-## Diagrama Entidad - Relación
-El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la estructura de la base de datos, mostrando las entidades, sus atributos y las relaciones entre ellas. Este diagrama permite visualizar cómo interactúan los datos en el sistema y ayuda a comprender la organización de la base de datos.
-
-<p align="center">
-  <a href="src/diagrama_ER.pdf">
-    <img src="src/diagrama_ER.png" alt="Diagrama ER" width="1000"/>
-  </a>
-</p>
-
-
-
 ## Dashboard
+El dashboard interactivo tiene como objetivo optimizar la toma de decisiones gerenciales al proporcionar insights valiosos e indicadores clave de rendimiento.
 
-### 1. **KPI Fidelización del Cliente**  
-   - **Objetivo:** Aumentar la fidelización del cliente en un **10% cada trimestre**.  
-   - **Componentes clave:**  
-     - Filtros por restaurante, año, trimestre y cumplimiento.  
-     - Tabla con la recurrencia de clientes, el porcentaje de incremento y el cumplimiento de la meta.  
-     - Indicador gráfico mostrando el progreso hacia el objetivo.  
-     - Resumen del cumplimiento de los trimestres aprobados y no aprobados.
+## Indicadores claves de rendimiento (KPIs)
+A continuación, se mencionan los KPI que se visualizarán en el Dashboard para facilitar el seguimiento, control y la toma de decisiones estratégicas.
+
+### 1. **KPI Fidelización del cliente**  
+
+**Objetivo:** Incrementar la tasa de clientes recurrentes en un 10 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+
+$$
+\text{Fidelización del cliente} = \left( \frac{\text{Tasa de clientes recurrentes (trimestre actual)}}{\text{Tasa de clientes recurrentes (trimestre anterior)}} \right) \times 100
+$$
+
+**Fórmula para calcular la tasa de clientes recurrentes:**
+
+$$
+\text{Tasa de clientes recurrentes} = \left( \frac{\text{Clientes recurrentes}}{\text{Clientes únicos totales}} \right) \times 100
+$$
 
 <p align="center">
   <a>
@@ -226,13 +155,15 @@ El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la es
 
 ---
 
-### 2. **KPI Tasa de Reseñas**  
-   - **Objetivo:** Aumentar la tasa de reseñas en un **20% cada trimestre**.  
-   - **Componentes clave:**  
-     - Filtros por restaurante, ciudad, sucursal y año.  
-     - Tabla con la cantidad de reseñas, el porcentaje de incremento y el cumplimiento del objetivo.  
-     - Indicador gráfico que mide el progreso trimestral.  
-     - Resumen con trimestres aprobados y no aprobados para evaluar el cumplimiento.
+### 2. **KPI Tasa de Reseñas**
+
+**Objetivo:** Aumentar la tasa de reseñas en un 20 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+
+$$
+\text{Tasa de reseñas} = \left( \frac{\text{Número de reseñas (trimestre actual)}}{\text{Número de reseñas (trimestre anterior)}} \right) \times 100
+$$
 
 <p align="center">
   <a>
@@ -242,16 +173,29 @@ El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la es
 
 ---
 
-### 3. **KPI Satisfacción del Cliente**  
-   - **Objetivo:** Aumentar la satisfacción del cliente en un **10% cada trimestre**.  
-   - **Componentes clave:**  
-     - Filtros por restaurante, ciudad, sucursal y año.  
-     - Tabla con la calificación promedio, diferencia trimestral y cumplimiento de la meta.  
-     - Medidor gráfico que representa el progreso de satisfacción.  
-     - Resumen con la cantidad de trimestres aprobados y no aprobados.
+### 3. **KPI Satisfacción del Cliente** 
+
+**Objetivo:** Aumentar la satisfacción del cliente por establecimiento recomendado en un 10 % para el próximo trimestre.
+
+**Fórmula para calcular el KPI:**
+
+$$
+\text{Satisfacción del cliente} = \left( \frac{\text{Calificación promedio de restaurantes recomendados (trimestre actual)}}{\text{Calificación promedio de restaurantes recomendados (trimestre anterior)}} \right) \times 100
+$$
 
 <p align="center">
   <a>
     <img src="Dashboard/3_KPI_Satisfaccion.PNG" alt="KPI3" width="1200"/>
   </a>
 </p>
+
+---
+
+## Encuesta de satisfacción
+Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de visitar el establecimiento recomendado, reciba una notificación con las siguientes preguntas:
+1. Califique el establecimiento con estrellas del 1 al 5.
+2. Evalúe su satisfacción: positiva, neutra o negativa.
+3. Indique si es su primera visita o una visita repetida.
+
+## Consideraciones adicionales para los KPIs
+Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
