@@ -199,3 +199,9 @@ Para llevar a cabo los KPIs enunciados, es necesario que el cliente, después de
 
 ## Consideraciones adicionales para los KPIs
 Estos KPIs se lograrán con mayor efectividad mediante campañas de marketing para impulsar las reseñas y la participación en la encuesta de satisfacción. Por ejemplo, se podrían incentivar con programas de puntos y recompensas. Sin embargo, por cuestiones de tiempo, se ha decidido aplazarlos para fases futuras del proyecto.
+
+# Aclaraciones finales
+Las presentaciones para cada sprint pueden ser descargadas desde estos enlaces:
+* Sprint 1: [este enlace](https://1drv.ms/p/c/f0a615daf23b2587/EZVAQwk17r9Crdiy6xuYajkBVKh5x9MuwbWBKeknwTDNWg?e=cgyFYz)
+* Sprint 2: [este enlace](https://1drv.ms/p/c/f0a615daf23b2587/EbvIUlK-uGRHiVeIlLwfejkBCwGQkUv_MOcYZ1tQgmU1aA?e=igvx5d)
+* Sprint 3: [este enlace](https://1drv.ms/p/c/f0a615daf23b2587/EeWKYzX80P1JsgoP6eJNHysBgqPV4m6VH4FnR7aLur8O-A?e=gDe4sj) 
