@@ -95,7 +95,7 @@ Para tener un panorama amplio de lo que significa cada variable y entender el or
 En cuanto al procesamiento de los datos, se realizó lo siguiente:
 1. Para ver el codigo para realizar el web scarping: [Ir al Scrap](ETL/Scrap.ipynb)
 2. Para ver el código para las funciones de limpieza y transformación de los datos: [Ir a la carpeta clean_functions](clean_functions/)
-3. Para ver donde se alojaron los archivos limpios provenientes del punto 2: [Ir a la carpeta Data_cleand](Data_cleande/)
+3. Para ver donde se alojaron los archivos limpios provenientes del punto 2: [Ir a la carpeta Data_cleaned](Data_cleande/)
 4. Para ver como se ejecutan las funciones para el ETL: [Ir al ETL](ETL/ETL.ipynb)
 
 ## EDA
