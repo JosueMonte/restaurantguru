@@ -71,7 +71,7 @@ A continuación, se agrupan las distintas tecnologías según flujo de trabajo:
 6. Visualización:
    1. Power BI.
 
-* Para más detalle [Ver workflow](workflow.pdf). Este archivo describe el workflow de un sistema de recomendación, abarcando desde la obtención de datos hasta su despliegue. Incluye etapas clave como ETL (Extracción, Transformación y Carga), EDA (Análisis Exploratorio de Datos), modelamiento de Machine Learning, y despliegue en la nube. Utiliza diversas herramientas como Google Cloud Platform (BigQuery, Cloud Storage, Cloud Functions), además de APIs como Google Maps y Cloud Natural Language API. Los principales entregables son un dashboard interactivo y el sistema de recomendación desplegado en la nube.
+* Para más detalle [Ver workflow](src/workflow.pdf). Este archivo describe el workflow de un sistema de recomendación, abarcando desde la obtención de datos hasta su despliegue. Incluye etapas clave como ETL (Extracción, Transformación y Carga), EDA (Análisis Exploratorio de Datos), modelamiento de Machine Learning, y despliegue en la nube. Utiliza diversas herramientas como Google Cloud Platform (BigQuery, Cloud Storage, Cloud Functions), además de APIs como Google Maps y Cloud Natural Language API. Los principales entregables son un dashboard interactivo y el sistema de recomendación desplegado en la nube.
 
 ## Cronograma general
 A continuación se visualiza un cronograma de Gantt, el cual muestra de manera clara cómo fueron asignadas las tareas por persona y los tiempos de trabajo, vinculándose perfectamente con los hitos clave que deben alcanzarse.
@@ -84,7 +84,7 @@ A continuación se visualiza un cronograma de Gantt, el cual muestra de manera c
 
 ## Diagrama de entidad-relación
 El **Diagrama Entidad-Relación (DER)** es una representación gráfica de la estructura de la base de datos, mostrando las entidades, sus atributos y las relaciones entre ellas. Este diagrama permite visualizar cómo interactúan los datos en el sistema y ayuda a comprender la organización de la base de datos.
-* Para más detalle [Ver diagrama de entidad-relacion](diagram_ER.pdf)
+* Para más detalle [Ver diagrama de entidad-relacion](src/diagram_ER.pdf)
 
 ## Diccionario de datos
 Para tener un panorama amplio de lo que significa cada variable y entender el origen de los dataset, se puede acceder a la carpeta de diccionario de datos.
